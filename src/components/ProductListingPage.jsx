@@ -1,10 +1,9 @@
-const IMAGE_URL = "https://assets.pokemon.com/assets/cms2/img/pokedex/full/";
-
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import { fetchPokemonList, fetchPokemonDetails } from "../api";
 import "./ProductListingPage.css";
 import { usePokemon } from "../PokemonContext";
+import PokemonCard from "../components/PokemonCard";
 
 function ProductListingPage() {
   const [pokemonList, setPokemonList] = useState([]);
@@ -20,40 +19,17 @@ function ProductListingPage() {
         })
       );
       setPokemonList(pokemonWithDetails);
+      setPokemonDetails(pokemonWithDetails);
     }
     fetchData();
   }, []);
-
-  const handleCardClick = (details) => {
-    setPokemonDetails(details);
-  };
 
   return (
     <div className="pokemon-list-container">
       <h1>Pokémon List</h1>
       <div className="pokemon-card-grid">
         {pokemonList.map((pokemon) => (
-          <Link
-            key={pokemon.name}
-            to={`/pokemon/${pokemon.name}`}
-            onClick={() => handleCardClick(pokemon.details)}
-            className="pokemon-card"
-          >
-            <img
-              src={`${IMAGE_URL}${String(pokemon.details.id).padStart(
-                3,
-                "0"
-              )}.png`}
-              alt={pokemon.name}
-            />
-            <p>{pokemon.name}</p>
-            {/* <p>Height: {pokemon.details.height}</p>
-            <p>Weight: {pokemon.details.weight}</p> */}
-            <p>
-              Type:{" "}
-              {pokemon.details.types.map((type) => type.type.name).join(", ")}
-            </p>
-          </Link>
+          <PokemonCard key={pokemon.name} pokemon={pokemon} />
         ))}
       </div>
     </div>

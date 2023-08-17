@@ -1,31 +1,38 @@
 import React from "react";
 import { usePokemon } from "../PokemonContext";
 import "./ProductDescriptionPage.css"; // Import the CSS file
+import { useParams } from "react-router-dom";
 
-const IMAGE_URL = "https://assets.pokemon.com/assets/cms2/img/pokedex/full/";
+import { IMAGE_URL } from "./constants";
 
 function ProductDescriptionPage() {
   const { pokemonDetails } = usePokemon();
+  const { pokemonName } = useParams();
+  console.log(pokemonDetails);
+  // const pokemon = pokemonDetails.find(
+  //   (pokemon) => pokemon.name === pokemonName
+  // ).details;
+  const pokemon =
+    pokemonDetails !== null
+      ? pokemonDetails.find((pokemon) => pokemon.name === pokemonName).details
+      : null;
 
   return (
     <div className="product-description-container">
       <h1 className="product-description-header">Pokémon Details</h1>
-      {pokemonDetails && (
+      {pokemon && (
         <div className="pokemon-details">
-          <h2 className="pokemon-name">{pokemonDetails.name}</h2>
+          <h2 className="pokemon-name">{pokemon.name}</h2>
           <img
-            src={`${IMAGE_URL}${String(pokemonDetails.id).padStart(
-              3,
-              "0"
-            )}.png`}
-            alt={pokemonDetails.name}
+            src={`${IMAGE_URL}${String(pokemon.id).padStart(3, "0")}.png`}
+            alt={pokemon.name}
           />
-          <p className="pokemon-id">ID: {pokemonDetails.id}</p>
-          <p className="pokemon-property">Height: {pokemonDetails.height}</p>
-          <p className="pokemon-property">Weight: {pokemonDetails.weight}</p>
+          <p className="pokemon-id">ID: {pokemon.id}</p>
+          <p className="pokemon-property">Height: {pokemon.height}</p>
+          <p className="pokemon-property">Weight: {pokemon.weight}</p>
           <p className="pokemon-property">Abilities:</p>
           <ul className="abilities-list">
-            {pokemonDetails.abilities.map((ability) => (
+            {pokemon.abilities.map((ability) => (
               <li className="ability-item" key={ability.ability.name}>
                 {ability.ability.name}
               </li>
