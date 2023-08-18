@@ -1,9 +1,9 @@
 import React from "react";
-import { usePokemon } from "../PokemonContext";
+import { usePokemon } from "../../PokemonContext";
 import "./ProductDescriptionPage.css"; // Import the CSS file
 import { useParams } from "react-router-dom";
 
-import { IMAGE_URL } from "../components/constants";
+import { IMAGE_URL } from "../../components/constants";
 
 function ProductDescriptionPage() {
   const { pokemonDetails } = usePokemon();
