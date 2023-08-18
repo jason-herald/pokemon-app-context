@@ -6,7 +6,7 @@ import { usePokemon } from "../PokemonContext";
 import PokemonCard from "../components/PokemonCard";
 
 function ProductListingPage() {
-  const { setPokemonDetails } = usePokemon();
+  const { pokemonDetails, setPokemonDetails } = usePokemon();
 
   useEffect(() => {
     async function fetchData() {
@@ -21,12 +21,12 @@ function ProductListingPage() {
     }
     fetchData();
   }, []);
-  const pokemon = usePokemon().pokemonDetails;
+
   return (
     <div className="pokemon-list-container">
       <h1>Pokémon List</h1>
       <div className="pokemon-card-grid">
-        {pokemon?.map((pokemon) => (
+        {pokemonDetails?.map((pokemon) => (
           <PokemonCard key={pokemon.name} pokemon={pokemon} />
         ))}
       </div>
