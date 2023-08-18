@@ -6,7 +6,6 @@ import { usePokemon } from "../PokemonContext";
 import PokemonCard from "../components/PokemonCard";
 
 function ProductListingPage() {
-  const [pokemonList, setPokemonList] = useState([]);
   const { setPokemonDetails } = usePokemon();
 
   useEffect(() => {
@@ -18,17 +17,16 @@ function ProductListingPage() {
           return { ...pokemon, details };
         })
       );
-      setPokemonList(pokemonWithDetails);
       setPokemonDetails(pokemonWithDetails);
     }
     fetchData();
   }, []);
-
+  const pokemon = usePokemon().pokemonDetails;
   return (
     <div className="pokemon-list-container">
       <h1>Pokémon List</h1>
       <div className="pokemon-card-grid">
-        {pokemonList.map((pokemon) => (
+        {pokemon?.map((pokemon) => (
           <PokemonCard key={pokemon.name} pokemon={pokemon} />
         ))}
       </div>

@@ -3,19 +3,14 @@ import { usePokemon } from "../PokemonContext";
 import "./ProductDescriptionPage.css"; // Import the CSS file
 import { useParams } from "react-router-dom";
 
-import { IMAGE_URL } from "./constants";
+import { IMAGE_URL } from "../components/constants";
 
 function ProductDescriptionPage() {
   const { pokemonDetails } = usePokemon();
   const { pokemonName } = useParams();
-  console.log(pokemonDetails);
-  // const pokemon = pokemonDetails.find(
-  //   (pokemon) => pokemon.name === pokemonName
-  // ).details;
-  const pokemon =
-    pokemonDetails !== null
-      ? pokemonDetails.find((pokemon) => pokemon.name === pokemonName).details
-      : null;
+  const pokemon = pokemonDetails?.find(
+    (pokemon) => pokemon.name === pokemonName
+  ).details;
 
   return (
     <div className="product-description-container">

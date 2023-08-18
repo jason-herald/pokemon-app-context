@@ -12,8 +12,3 @@ export async function fetchPokemonDetails(pokemonName) {
   const data = await response.json();
   return data;
 }
-
-export function fetchPokemonImage(url) {
-  const parts = url.split("/");
-  return parts[parts.length - 1];
-}

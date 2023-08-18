@@ -13,8 +13,8 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
-import ProductListingPage from "./components/ProductListingPage";
-import ProductDescriptionPage from "./components/ProductDescriptionPage";
+import ProductListingPage from "./pages/ProductListingPage";
+import ProductDescriptionPage from "./pages/ProductDescriptionPage";
 import "./index.css";
 import { PokemonProvider } from "./PokemonContext";
 
