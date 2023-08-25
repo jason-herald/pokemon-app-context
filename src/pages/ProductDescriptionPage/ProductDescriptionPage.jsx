@@ -3,7 +3,7 @@ import { usePokemon } from "../../PokemonContext";
 import "./ProductDescriptionPage.css"; // Import the CSS file
 import { useParams } from "react-router-dom";
 
-import { IMAGE_URL } from "../../components/constants";
+const IMAGE_URL = import.meta.env.VITE_IMAGE_URL;
 
 function ProductDescriptionPage() {
   const { pokemonDetails } = usePokemon();

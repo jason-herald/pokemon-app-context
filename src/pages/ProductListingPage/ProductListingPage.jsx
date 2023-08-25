@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Link } from "react-router-dom";
 import { fetchPokemonList, fetchPokemonDetails } from "../../api";
 import "./ProductListingPage.css";
 import { usePokemon } from "../../PokemonContext";

@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { IMAGE_URL } from "./constants";
-
+const IMAGE_URL = import.meta.env.VITE_IMAGE_URL;
 function PokemonCard({ pokemon }) {
   return (
     <Link to={`/pokemon/${pokemon.name}`} className="pokemon-card">
